@@ -35,8 +35,27 @@ class regexTool
 
     /**
      * 核心匹配方法
+     * @param string $pattern 要搜索的模式
+     * @param string $subject
+     * @return array|int
     */
     private function regex($pattern, $subject){
-        
+        if(array_key_exists(strtolower($pattern), $this->validate)){
+            $pattern = $this->validate[$pattern];
+        }
+
+        $this->returnMatchResult?
+            preg_match_all($pattern, $subject, $this->matches) :
+            preg_match($pattern, $subject) === 1;
+
+        return $this->getRegexResult();
+    }
+
+    private function getRegexresult(){
+        if($this->returnMatchResult){
+            return $this->matches;
+        }else{
+            return $this->isMatch;
+        }
     }
 }
