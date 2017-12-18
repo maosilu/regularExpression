@@ -58,4 +58,22 @@ class regexTool
             return $this->isMatch;
         }
     }
+
+    /**
+    返回值的类型
+    */
+    public function toggleReturnType($bool = null){
+        if(empty($bool)){
+            $this->returnMatchResult = !$this->returnMatchResult;
+        }else{
+            $this->returnMatchResult = is_bool($bool) ? $bool : (bool)$bool;
+        }
+    }
+
+    /**
+    修改修正模式
+    */
+    public function setFixMode($fixMode){
+        $this->fixMode = $fixMode;
+    }
 }
