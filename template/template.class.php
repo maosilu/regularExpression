@@ -50,4 +50,16 @@ class template
         $fileName = $this->templateDir.$this->currentTemp.$ext;
         $this->outputHtml = file_get_contents($fileName);
     }
+
+    /**
+     * 模版编译方法
+    */
+    public function compileTemplate($templateName, $ext='.html'){
+        $templateName = empty($templateName) ? $this->currentTemp : $templateName;
+        // \{#\$(\w+)#\}
+        $pattern = '/'.preg_quote($this->leftTag);
+        $pattern .= '\$([a-zA-Z_]\w*)';
+        $pattern .= preg_quote($this->rightTag).'/';
+        $this->outputHtml = preg_replace($pattern, '<?php echo $this->getVar(\'$1\');?>', $this->outputHtml);
+    }
 }
