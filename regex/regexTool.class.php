@@ -44,7 +44,7 @@ class regexTool
             $pattern = $this->validate[$pattern];
         }
 
-        $this->returnMatchResult?
+        $this->returnMatchResult ?
             preg_match_all($pattern, $subject, $this->matches) :
             preg_match($pattern, $subject) === 1;
 
@@ -75,5 +75,27 @@ class regexTool
     */
     public function setFixMode($fixMode){
         $this->fixMode = $fixMode;
+    }
+
+    /**
+    正则表达式非空验证
+    */
+    public function noEmpty($str){
+        return $this->regex('require', $str);
+    }
+
+    public function isEmail($email){
+        return $this->regex('email', $email);
+    }
+
+    public function isMobile($mobile){
+        return $this->regex('mobile', $mobile);
+    }
+
+    /**
+    用户自定义正则表达式的验证
+    */
+    public function check($pattern, $subject){
+        return $this->regex($pattern, $subject);
     }
 }
