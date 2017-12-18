@@ -64,4 +64,12 @@ class template
         $compiledFileName = $this->compileDir.md5($templateName).$ext;
         file_put_contents($compiledFileName, $this->outputHtml);
     }
+
+    /**
+     * 显示模版
+    */
+    public function display($templateName, $ext='.html'){
+        $templateName = empty($templateName) ? $this->currentTemp : $templateName;
+        include_once $this->compileDir.md5($templateName).$ext;
+    }
 }
