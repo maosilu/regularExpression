@@ -46,7 +46,7 @@ class regexTool
 
         $this->returnMatchResult ?
             preg_match_all($pattern, $subject, $this->matches) :
-            preg_match($pattern, $subject) === 1;
+            $this->isMatch = preg_match($pattern, $subject) === 1;
 
         return $this->getRegexResult();
     }
