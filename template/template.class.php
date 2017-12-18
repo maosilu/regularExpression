@@ -61,5 +61,7 @@ class template
         $pattern .= '\$([a-zA-Z_]\w*)';
         $pattern .= preg_quote($this->rightTag).'/';
         $this->outputHtml = preg_replace($pattern, '<?php echo $this->getVar(\'$1\');?>', $this->outputHtml);
+        $compiledFileName = $this->compileDir.md5($templateName).$ext;
+        file_put_contents($compiledFileName, $this->outputHtml);
     }
 }
