@@ -39,4 +39,15 @@ class template
     public function getVar($tag){
         return $this->varPool[$tag];
     }
+
+    /**
+     * 获取模版源文件
+     * @param string $templateName 模版源文件名称
+     * @param string $ext 模版源文件的扩展名
+    */
+    public function getSourceTemplate($templateName, $ext='.html'){
+        $this->currentTemp = $templateName;
+        $fileName = $this->templateDir.$this->currentTemp.$ext;
+        $this->outputHtml = file_get_contents($fileName);
+    }
 }
