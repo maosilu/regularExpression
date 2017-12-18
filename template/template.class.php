@@ -54,7 +54,7 @@ class template
     /**
      * 模版编译方法
     */
-    public function compileTemplate($templateName, $ext='.html'){
+    public function compileTemplate($templateName=null, $ext='.html'){
         $templateName = empty($templateName) ? $this->currentTemp : $templateName;
         // \{#\$(\w+)#\}
         $pattern = '/'.preg_quote($this->leftTag);
@@ -68,7 +68,7 @@ class template
     /**
      * 显示模版
     */
-    public function display($templateName, $ext='.html'){
+    public function display($templateName=null, $ext='.html'){
         $templateName = empty($templateName) ? $this->currentTemp : $templateName;
         include_once $this->compileDir.md5($templateName).$ext;
     }
