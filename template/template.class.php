@@ -23,4 +23,20 @@ class template
         if(!empty($leftTag)) $this->leftTag = $leftTag;
         if(!empty($rightTag)) $this->rightTag = $rightTag;
     }
+
+    /**
+     * 将编译中需要用到的变量放到变量池中（将数据写入变量池）
+     * @param string $tag
+     * @param mixed $var
+    */
+    public function assign($tag, $var){
+        $this->varPool[$tag] = $var;
+    }
+
+    /**
+     * 获取变量池中的数据
+    */
+    public function getVar($tag){
+        return $this->varPool[$tag];
+    }
 }
