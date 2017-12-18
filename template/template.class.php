@@ -9,10 +9,18 @@
 class template
 {
     private $templateDir; //模版引擎源文件的存放目录
-    private $compiled; //模版引擎编译后文件的存放目录
+    private $compileDir; //模版引擎编译后文件的存放目录
     private $leftTag = '{#'; //模版文件中需要替换掉的变量
     private $rightTag = '#}';
     private $currentTemp = ''; //当前正在编译的模版文件名
     private $outputHtml; //当前正在编译的模版文件中的html代码
     private $varPool = array(); //变量池
+
+    public function __construct($templateDir, $compileDir, $leftTag=null, $rightTag=null)
+    {
+        $this->templateDir = $templateDir;
+        $this->compileDir = $compileDir;
+        if(!empty($leftTag)) $this->leftTag = $leftTag;
+        if(!empty($rightTag)) $this->rightTag = $rightTag;
+    }
 }
